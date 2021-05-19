@@ -60,7 +60,7 @@ public class Category implements Serializable{
 		return updatedAt;
 	}
 	
-	//Qd for chamado o save atualiza automaticamente
+	//Qd for chamado o save atualiza automaticamente - Auditing Data
 	@PrePersist
 	public void prePersist() {
 		createdAt = Instant.now();
