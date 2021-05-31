@@ -78,6 +78,10 @@ public class Category implements Serializable{
 		updatedAt = Instant.now();
 	}
 	
+	public Set<Product> getProducts() {
+		return products;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
