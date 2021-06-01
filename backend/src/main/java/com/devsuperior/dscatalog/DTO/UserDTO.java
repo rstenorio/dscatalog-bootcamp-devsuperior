@@ -8,9 +8,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-import org.hibernate.validator.constraints.UniqueElements;
-
 import com.devsuperior.dscatalog.entities.User;
 
 public class UserDTO implements Serializable{
