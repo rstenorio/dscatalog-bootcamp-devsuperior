@@ -8,6 +8,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
+import org.hibernate.validator.constraints.UniqueElements;
+
 import com.devsuperior.dscatalog.entities.User;
 
 public class UserDTO implements Serializable{
@@ -19,6 +22,7 @@ public class UserDTO implements Serializable{
 	@NotBlank(message = "Campo Obrigatorio")
 	private String firstName;
 	private String lastName;
+
 	@Email(message = "Email invalido")
 	private String email;
 
