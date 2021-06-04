@@ -25,7 +25,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	private static final String[] OP_OR_ADMIN = { "/products/**", "/categories/**" };
 	private static final String[] ADMIN = { "/users/**" };
 	
-	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(store);
@@ -45,7 +44,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 			.antMatchers(ADMIN).hasRole("ADMIN")
 			.anyRequest().authenticated();
 	}
-	
-	
-	
 }
