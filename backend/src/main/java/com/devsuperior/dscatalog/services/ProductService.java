@@ -37,8 +37,10 @@ public class ProductService {
 		
 		//Product product = (productName == null) ? null : repository.fin
 		
-		Page<Product> list = repository.find(name, categories, pageable);
-		return list.map(x -> new ProductDTO(x));
+		Page<Product> page = repository.find(name, categories, pageable);
+		
+		repository.findProductsWithCategories(page.getContent());
+		return page.map(x -> new ProductDTO(x, x.getCategories()));
 
 	}
 
