@@ -108,7 +108,7 @@ public class ProductServiceTests {
 	@Test
 	public void findAllPagedShouldReturnPage() {
 		Pageable pageable = PageRequest.of(0, 10);
-		Page<ProductDTO> res = service.findAllPaged(pageable);
+		Page<ProductDTO> res = service.findAllPaged(null, null, pageable);
 
 		Assertions.assertNotNull(res);
 
