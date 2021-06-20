@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import static org.mockito.ArgumentMatchers.any;
+
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,9 +65,14 @@ public class ProductServiceTests {
 
 		// SIMULACAO DE COMPORTAMENTO MOCKADOS
 		Mockito.when(repository.findAll((Pageable) ArgumentMatchers.any())).thenReturn(page);
+		
 		Mockito.when(repository.save(ArgumentMatchers.any())).thenReturn(product);
+
 		Mockito.when(repository.findById(IdExists)).thenReturn(Optional.of(product));
 		Mockito.when(repository.findById(NonIdExists)).thenReturn(Optional.empty());
+
+		Mockito.when(repository.find(any(),any(), any())).thenReturn(page);
+		
 		Mockito.doNothing().when(repository).deleteById(IdExists);
 		Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(NonIdExists);
 
@@ -108,11 +116,10 @@ public class ProductServiceTests {
 	@Test
 	public void findAllPagedShouldReturnPage() {
 		Pageable pageable = PageRequest.of(0, 10);
-		Page<ProductDTO> res = service.findAllPaged(null, null, pageable);
+		Page<ProductDTO> res = service.findAllPaged("", 0L, pageable);
 
 		Assertions.assertNotNull(res);
 
-		Mockito.verify(repository).findAll(pageable);
 	}
 
 	@Test

@@ -56,7 +56,7 @@ public class ProductServiceIT {
 	public void findAllPagedShouldReturnPageWhenPage0Size10() {
 		//PageRequest PR = PageRequest.of(0, 10);
 		
-		Page<ProductDTO> res = service.findAllPaged(null, null, PageRequest.of(0, 10));
+		Page<ProductDTO> res = service.findAllPaged("", 0L, PageRequest.of(0, 10));
 
 		Assertions.assertFalse(res.isEmpty());
 		Assertions.assertEquals(0, res.getNumber());
@@ -69,7 +69,7 @@ public class ProductServiceIT {
 	public void findAllPagedShouldReturnPageWhenPageDoesntExist() {
 		//PageRequest PR = PageRequest.of(0, 10);
 		
-		Page<ProductDTO> res = service.findAllPaged(null, null, PageRequest.of(50, 10));
+		Page<ProductDTO> res = service.findAllPaged("", 0L, PageRequest.of(50, 10));
 
 		Assertions.assertTrue(res.isEmpty());
 	}
@@ -77,7 +77,7 @@ public class ProductServiceIT {
 	@Test
 	public void findAllPagedShouldReturnSortPagedWhenSortByName() {
 		PageRequest PR = PageRequest.of(0, 10,Sort.by("name"));
-		Page<ProductDTO> res = service.findAllPaged(null, null, PR);
+		Page<ProductDTO> res = service.findAllPaged("", 0L, PR);
 		
 		Assertions.assertFalse(res.isEmpty());
 		Assertions.assertEquals("Macbook Pro", res.getContent().get(0).getName()); 
